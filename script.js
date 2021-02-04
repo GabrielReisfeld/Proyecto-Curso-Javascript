@@ -2,6 +2,21 @@ function Auto (marcaAuto, precioAuto, cantidadAuto) {
     this.marca = marcaAuto;
     this.precio = precioAuto;
     this.cantidad = cantidadAuto;
+
+    this.mostrarAutoEnPantalla = function() {
+        document.getElementById("carrito").innerHTML = `
+        <div>
+             <p>${this.marca}</p>
+             <p>${this.precio}</p>
+             <p>${this.cantidad}</p>
+        </div>
+        `;
+    }
+    
+}
+function mostrarAuto() {
+    let autoUno = new Auto ("Volkswagen", 200000, 10);
+    autoUno.mostrarAutoEnPantalla();
 }
 
 
@@ -22,37 +37,5 @@ baseDeDatos.push(autoCinco);
 baseDeDatos.push(autoSeis);
 
 console.log(baseDeDatos);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
