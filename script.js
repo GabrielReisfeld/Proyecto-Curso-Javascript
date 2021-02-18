@@ -47,7 +47,8 @@ for (let i = 0; i < baseDeDatos.length; i++){
     }
 }
 
-document.getElementById("autos").innerHTML = mostrarAuto;
+//document.getElementById("autos").innerHTML = mostrarAuto;
+$("#autos").html(mostrarAuto);
 
 function agregarAlCarrito (auto) {
     carrito.push(auto);
