@@ -4,12 +4,30 @@ if (localStorage.getItem("carrito") != null) {
     document.getElementById("contador").innerHTML = carrito.length;
 }
 
+function Carrito (){
+    this.agregarAlCarrito = function (auto){
+    carrito.push(auto);
+    console.log(carrito);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    let totalPrecio = 0;
+    for (let i = 0; i < carrito.length; i++) {
+        totalPrecio += carrito[i].precio;
+    }
+    document.getElementById("precioTotal").innerHTML = "$" + totalPrecio;
+    document.getElementById("contador").innerHTML = carrito.length;
+    }
+    return this.agregarAlCarrito;
+}
+
+
+
 function Auto (marcaAuto, precioAuto, cantidadAuto, imagenAuto) {
     this.marca = marcaAuto;
     this.precio = precioAuto;
     this.cantidad = cantidadAuto;
     this.imagen = imagenAuto;
     }
+
 
 let baseDeDatos = [];
 
@@ -36,7 +54,7 @@ for (let i = 0; i < baseDeDatos.length; i++){
                 <div class="botones">
                     <h3>${baseDeDatos[i].marca}</h3>
                     <h3>$${baseDeDatos[i].precio}</h3>
-                    <button onclick='agregarAlCarrito(${JSON.stringify(baseDeDatos[i])})'>Comprar Auto</button>
+                    <button onclick='Carrito.agregarAlCarrito(${JSON.stringify(baseDeDatos[i])})'>Comprar Auto</button>
 				</div>
 		</div>
         `
@@ -50,7 +68,7 @@ for (let i = 0; i < baseDeDatos.length; i++){
 //document.getElementById("autos").innerHTML = mostrarAuto;
 $("#autos").html(mostrarAuto);
 
-function agregarAlCarrito (auto) {
+/*function agregarAlCarrito (auto) {
     carrito.push(auto);
     console.log(carrito);
     localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -60,4 +78,5 @@ function agregarAlCarrito (auto) {
     }
     document.getElementById("precioTotal").innerHTML = "$" + totalPrecio;
     document.getElementById("contador").innerHTML = carrito.length;
-}
+}*/
+
