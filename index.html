@@ -3,35 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Venta de Consolas de VideoJuegos</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/style.css">
 </head>
-<body>
-    <div class="contenedor">
-		<nav>
-			<a class="logotipo" href="#">Logotipo</a>
-			<div class="enlaces">
-				<a href="#">Inicio</a>
-				<a href="#">Productos</a>
-				<a href="#">Contacto</a>
+<body onload="cargarModo();">
+	<nav id="top" class="navbar navbar-expand-md navbar-dark border-bottom border-primary">
+		<div class="container-fluid">
+			<img src="Multimedia/logo.png" alt="logo" class="logo navbar-brand img-fluid">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+		  	<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+		 		<ul class="navbar-nav">
+					<li class="nav-item pl-lg-5"><a class="nav-link disabled text-danger" href="index.html">Home</a></li>
+					<li class="nav-item pl-lg-5"><a class="nav-link text-warning" href="productos.html">Productos</a></li>
+					<li class="nav-item pl-lg-5"><a class="nav-link text-success" href="contacto.html">Contacto</a></li>
+					<li class="nav-item pl-lg-5"><button type="button" class="btn btn-dark" onclick="cambiarModo()"><i class="fa fa-moon-o" style="font-size: 26px;"></i></button></li>
+				</ul>
 			</div>
-		</nav>
-		<div>
-			<h1>Precio a pagar:</h1>
-			<p id="precioTotal"></p>
 		</div>
-		<div id="carrito">
+	</nav>
 
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+		  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		  <li data-target="#myCarousel" data-slide-to="1"></li>
+		  <li data-target="#myCarousel" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner">
+		  <div class="carousel-item active">
+			  <img src="Multimedia/mario.png" class="img-fluid" alt="consolas">
+			<div class="container">
+			  <div class="carousel-caption text-center">
+				<h1>Consolas al mejor precio</h1>
+				<p>Venta de todas las consolas de videojuegos del mercado al mejor precio.</p>
+			  </div>
+			</div>
+		  </div>
+		  <div class="carousel-item">
+			<img src="Multimedia/mario3.jpg" alt="reparacion">
+			<div class="container">
+			  <div class="carousel-caption text-center">
+				<h1>Servicio técnico especializado</h1>
+				<p>Realizamos servicio técnico a todas las consolas de videojuegos.</p>
+			  </div>
+			</div>
+		  </div>
+		  <div class="carousel-item">
+			<img src="Multimedia/mario4.jpg" alt="experiencia">
+			<div class="container">
+			  <div class="carousel-caption text-center">
+				<h1>Experiencia y pasión</h1>
+				<p>Somos una empresa con más de 50 años en el mercado y fanáticos de los videojuegos.</p>
+			  </div>
+			</div>
+		  </div>
 		</div>
-		<div id="contador">
-
-		</div>
-		<section id="autos" class="grid">
-			
-		</section>
+		<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Next</span>
+		</a>
 	</div>
 
+	<div class="container marketing">
+		<div class="row">
+		  <div class="col-lg-4">
+			<i class="fa fa-check mb-3" style="font-size:50px; color: green;"></i>
+			<h2 class="mb-3 text-primary">Garantía</h2>
+			<p class="text-danger">Ofrecemos entregas en menos de una semana y seguridad en las compras.</p>
+		  </div>
+		  <div class="col-lg-4">
+			<i class="fa fa-usd mb-3" style="font-size:50px; color: #ffc107;"></i>
+			<h2 class="mb-3 text-success">Métodos de Pago</h2>
+			<p class="text-primary">Tenés cuotas sin interés con tarjeta o efectivo en puntos de pago. ¡Y siempre es seguro!</p>
+		  </div>
+		  <div class="col-lg-4">
+			<i class="fa fa-clock-o mb-3" style="font-size:50px; color: #dc3545;"></i>
+			<h2 class="mb-3 text-warning">Atención Rápida</h2>
+			<p class="text-success">Ofrecemos un servicio de soporte con respuesta de hasta 24 horas máxima.</p>
+		  </div>
+		</div>
+	</div>
+	<div class="container">
+		<hr class="featurette-divider bg-warning">
+	
+	<div class="row featurette">
+		<div class="col-md-6">
+			<h2 class="featurette-heading">Las consolas más populares. <span class="text-muted">Las más vendidas de la historia.</span></h2>
+			<p class="lead">Encontrá las consolas con más ventas en toda la historia, desde la PlayStation 2 a la cabeza, siendo la más popular, a la consola portátil de doble pantalla más demandada, Nintendo DS.</p>
+		</div>
+		<div class="col-md-6">
+			<img src="Multimedia/populares.jpg" alt="populares" class="imgPortada img-fluid rounded">
+		</div>
+	</div>
+	
+	<hr class="featurette-divider bg-success">
+	
+	<div class="row featurette">
+		<div class="col-md-6 order-md-2">
+			<h2 class="featurette-heading">Consolas Retro. <span class="text-muted">En perfecto estado.</span></h2>
+			<p class="lead">Tenemos todas las consolas retro que te puedas imaginar, las de tu infancia o las que te contó tu viejo.</p>
+		</div>
+		<div class="col-md-6 order-md-1">
+			<img src="Multimedia/retro.jpg" alt="consola retro" class="imgPortada img-fluid rounded">
+		</div>
+	</div>
+	
+	<hr class="featurette-divider bg-danger">
+	
+	<div class="row featurette">
+		<div class="col-md-6">
+			<h2 class="featurette-heading">Juga a los mejores juegos. <span class="text-muted">Miles para elegir.</span></h2>
+			<p class="lead">Elegí tu consola de videojuego favorita y juga a los miles de juegos disponibles, desde la franquicia de Mario, a la serie de Call of Duty, a los distintos GTA, o por qué no el juego de deportes favorito, FIFA.</p>
+		</div>
+		<div class="col-md-6">
+			<img src="Multimedia/juegos.jpg" alt="top juegos" class="imgPortada img-fluid rounded">
+		</div>
+	</div>
+	
+	<hr class="featurette-divider bg-primary">
+	</div>
+	
+
+	<a href="#top" class="subir btn btn-outline-primary"><i class='fa fa-arrow-circle-up'></i></a>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="JS/script.js"></script>
+	<script src="JS/night.js"></script>
 </body>
 </html>

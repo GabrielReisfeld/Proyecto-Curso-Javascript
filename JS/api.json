@@ -1,0 +1,123 @@
+[
+    {
+      "id": 1,
+      "nombre": "PlayStation 1",
+      "precio": 200,
+      "cantidad": 10,
+      "anio": 1994,
+      "imagen": "Multimedia/Consolas/playstation.jpg"
+    },
+    {
+        "id": 2,
+        "nombre": "PlayStation 2",
+        "precio": 300,
+        "cantidad": 15,
+        "anio": 2000,
+        "imagen": "Multimedia/Consolas/playstation2.jpg"
+    },
+    {
+        "id": 3,
+        "nombre": "PlayStation 3",
+        "precio": 400,
+        "cantidad": 20,
+        "anio": 2006,
+        "imagen": "Multimedia/Consolas/playstation3.jpg"
+    },
+    {
+        "id": 4,
+        "nombre": "PlayStation 4",
+        "precio": 500,
+        "cantidad": 25,
+        "anio": 2013,
+        "imagen": "Multimedia/Consolas/playstation4.jpg"
+    },
+    {
+        "id": 5,
+        "nombre": "PlayStation 5",
+        "precio": 600,
+        "cantidad": 5,
+        "anio": 2020,
+        "imagen": "Multimedia/Consolas/playstation5.jpg"
+    },
+    {
+        "id": 6,
+        "nombre": "XBOX",
+        "precio": 300,
+        "cantidad": 10,
+        "anio": 2001,
+        "imagen": "Multimedia/Consolas/xbox.jpg"
+    },
+    {
+        "id": 7,
+        "nombre": "XBOX 360",
+        "precio": 400,
+        "cantidad": 15,
+        "anio": 2005,
+        "imagen": "Multimedia/Consolas/xbox360.jpg"
+    },
+    {
+        "id": 8,
+        "nombre": "XBOX ONE",
+        "precio": 500,
+        "cantidad": 20,
+        "anio": 2013,
+        "imagen": "Multimedia/Consolas/xboxone.jpg"
+    },
+    {
+        "id": 9,
+        "nombre": "Nintendo 64",
+        "precio": 200,
+        "cantidad": 23,
+        "anio": 1997,
+        "imagen": "Multimedia/Consolas/nintendo64.jpg"
+    },
+    {
+        "id": 10,
+        "nombre": "Super Nintendo",
+        "precio": 500,
+        "cantidad": 6,
+        "anio": 1990,
+        "imagen": "Multimedia/Consolas/supernintendo.jpg"
+    },
+    {
+        "id": 11,
+        "nombre": "Game Boy",
+        "precio": 250,
+        "cantidad": 8,
+        "anio": 1989,
+        "imagen": "Multimedia/Consolas/gameboy.jpg"
+    },
+    {
+        "id": 12,
+        "nombre": "Game Boy Advance",
+        "precio": 350,
+        "cantidad": 12,
+        "anio": 2001,
+        "imagen": "Multimedia/Consolas/gameboyadvance.jpg"
+    },
+    {
+        "id": 13,
+        "nombre": "GameCube",
+        "precio": 400,
+        "cantidad": 7,
+        "anio": 2001,
+        "imagen": "Multimedia/Consolas/gamecube.jpg"
+    },
+    {
+        "id": 14,
+        "nombre": "Atari 2600",
+        "precio": 800,
+        "cantidad": 2,
+        "anio": 1977,
+        "imagen": "Multimedia/Consolas/atari.jpg"
+    },
+    {
+        "id": 15,
+        "nombre": "SEGA",
+        "precio": 280,
+        "cantidad": 9,
+        "anio": 1988,
+        "imagen": "Multimedia/Consolas/sega.jpg"
+    }
+  ]
+  

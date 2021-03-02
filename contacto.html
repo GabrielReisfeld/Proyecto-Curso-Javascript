@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body onload="cargarModo();">
+    <nav id="top" class="navbar navbar-expand-md navbar-dark border-bottom border-primary">
+		<div class="container-fluid">
+			<img src="Multimedia/logo.png" alt="logo" class="logo navbar-brand img-fluid">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+		  	<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+				   <li class="nav-item pl-lg-5"><a class="nav-link text-danger" href="index.html">Home</a></li>
+				   <li class="nav-item pl-lg-5"><a class="nav-link text-warning" href="productos.html">Productos</a></li>
+				   <li class="nav-item pl-lg-5"><a class="nav-link disabled text-success" href="contacto.html">Contacto</a></li>
+				   <li class="nav-item pl-lg-5"><button type="button" class="btn btn-dark" onclick="cambiarModo()"><i class="fa fa-moon-o" style="font-size: 26px;"></i></button></li>
+			   </ul>
+		   </div>
+		</div>
+	</nav>
+    <div class="container">
+		<div class="row my-5">
+			<div class="offset-lg-3"></div>
+			<div class="col-lg-6">
+				<form class="text-center" action="#!">
+					<p class="h2 mb-4 text-primary">Contáctanos</p>
+				    <input type="text" class="form-control mb-3" placeholder="Nombre">
+				    <input type="number" class="form-control mb-3" placeholder="Teléfono">
+				    <input type="email" class="form-control mb-3" placeholder="Email">
+				    <select class="browser-default custom-select mb-3">
+				        <option value="" selected disabled>Tipo de Consulta</option>
+				        <option value="1">Compra de consola</option>
+				        <option value="2">Servicio técnico consola</option>
+				        <option value="3">Trabajar con nosotros</option>
+				        <option value="4">Otros asuntos</option>
+				    </select>
+				    <div class="form-group">
+				        <textarea class="form-control" rows="3" placeholder="Mensaje"></textarea>
+				    </div>
+				    <button class="btn btn-primary btn-block" type="submit">Enviar</button>
+				</form>
+			</div>
+			<div class="offset-lg-3"></div>
+		</div>
+	</div>
+    
+	<div class="container">
+		<div class="line bg-success"><hr></div>
+	</div>
+
+    <div class="datosContacto container pt-5">
+		<div class="row">
+			<div class="col-lg-12 text-center mb-4">
+				<h2 class="text-primary">Dónde encontrarnos</h2>
+			</div>
+		</div>
+		<div class="row mt-lg-3">
+			<div class="col-lg-4 text-center font-weight-bold">
+				<i class="fa fa-phone-square mb-2" style="font-size:50px; color:#ffc107"></i>
+				<p class="text-danger">Comunícate con nosotros llamando al: <br> 11-4786-2222</p>
+			</div>
+			<div class="col-lg-4 text-center font-weight-bold">
+				<i class="fa fa-envelope-square mb-2" style="font-size:50px; color: green;"></i>
+				<p class="text-warning">Envíanos tu consulta a nuestro correo: <br> gameover@gmail.com</p>
+			</div>
+			<div class="col-lg-4 text-center font-weight-bold">
+				<i class="fa fa-map-marker mb-2" style="font-size:50px; color: #dc3545;"></i>
+				<p class="text-success">Av. Cabildo 2166<br> CP1428, CABA BUENOS AIRES</p>
+			</div>
+		</div>
+		<div class="row mt-3">
+			<div class="col-lg-12">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1642.8338477651273!2d-58.45784016743587!3d-34.561968200964095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5d481f58987%3A0x494cc386dabb5053!2sAv.%20Cabildo%202166%2C%20C1428AAQ%20CABA!5e0!3m2!1ses-419!2sar!4v1614112182745!5m2!1ses-419!2sar" class="mapaGoogle img-fluid rounded" width="1500" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+			</div>
+		</div>
+		<div class="row">
+			<div class="redesSociales col-lg-12 my-5 text-center">
+					<a href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin-square mx-3" style="font-size:50px;text-shadow:2px 2px 4px #000000;"></i></a>
+					<a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook-official mx-3" style="font-size:50px;text-shadow:2px 2px 4px #000000;"></i></a>
+					<a href="https://www.twitter.com/" target="_blank"><i class="fa fa-twitter-square mx-3" style="font-size:50px;text-shadow:2px 2px 4px #000000;"></i></a>
+					<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram mx-3" style="font-size:50px;text-shadow:2px 2px 4px #000000;"></i></a>
+			</div>
+		</div>
+	</div>
+
+    <a href="#top" class="subir btn btn-outline-primary"><i class='fa fa-arrow-circle-up'></i></a>
+	
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="JS/script.js"></script>
+	<script src="JS/night.js"></script>
+</body>
+</html>

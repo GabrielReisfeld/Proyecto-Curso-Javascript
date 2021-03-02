@@ -1,82 +1,157 @@
-let carrito = [];
-if (localStorage.getItem("carrito") != null) {
-    carrito = JSON.parse(localStorage.getItem("carrito"));
-    document.getElementById("contador").innerHTML = carrito.length;
+let carrito = {}
+document.addEventListener('DOMContentLoaded', () => {
+    fetchData()
+    if (localStorage.getItem('carrito')) {
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        mostrarEnCarrito()
+    }
+})
+
+const fetchData = async () => {
+    try {
+        const res = await fetch('JS/api.json');
+        const data = await res.json()
+        mostrarConsolas(data)
+        detectarBotones(data)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-function Carrito (){
-    this.agregarAlCarrito = function (auto){
-    carrito.push(auto);
-    console.log(carrito);
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-    let totalPrecio = 0;
-    for (let i = 0; i < carrito.length; i++) {
-        totalPrecio += carrito[i].precio;
-    }
-    document.getElementById("precioTotal").innerHTML = "$" + totalPrecio;
-    document.getElementById("contador").innerHTML = carrito.length;
-    }
-    return this.agregarAlCarrito;
+const contenedorConsolas = document.querySelector('#contenedor-consolas')
+let mostrarConsolas = (data) => {
+    const template = document.querySelector('#template-consolas').content
+    const fragment = document.createDocumentFragment()
+    data.forEach(consolas => {
+        template.querySelector('img').setAttribute('src', consolas.imagen)
+        template.querySelector('h3').textContent = consolas.nombre
+        template.querySelector('h5').textContent = "US$ " + consolas.precio
+        template.querySelector('small').textContent = consolas.anio
+        template.querySelector('button').dataset.id = consolas.id
+        const clone = template.cloneNode(true)
+        fragment.appendChild(clone)
+    })
+    contenedorConsolas.appendChild(fragment)
 }
 
+let detectarBotones = (data) => {
+    const botones = document.querySelectorAll('.card button')
+    botones.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const consolas = data.find(item => item.id === parseInt(btn.dataset.id))
+            consolas.cantidad = 1
+            if(carrito.hasOwnProperty(consolas.id)) {
+                consolas.cantidad = carrito[consolas.id].cantidad + 1
+            }
+            carrito[consolas.id] = {...consolas}
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Consola Agregada al Carrito',
+                showConfirmButton: false,
+                timer: 1000
+              })
+            mostrarEnCarrito()
+        })
+    })
+}
 
+const items = document.querySelector('#items')
+let mostrarEnCarrito = () => {
+    items.innerHTML = ''
+    const template = document.querySelector('#template-carrito').content
+    const fragment = document.createDocumentFragment()
+    Object.values(carrito).forEach(consolas => {
+        template.querySelector('th').textContent = consolas.id
+        template.querySelectorAll('td')[0].textContent = consolas.nombre
+        template.querySelectorAll('td')[1].textContent = consolas.cantidad
+        template.querySelectorAll('td')[3].textContent = "US$ " + consolas.precio * consolas.cantidad
+        template.querySelector('.btn-success').dataset.id = consolas.id
+        template.querySelector('.btn-danger').dataset.id = consolas.id
+        const clone = template.cloneNode(true)
+        fragment.appendChild(clone)
+    }) 
+    items.appendChild(fragment)
 
-function Auto (marcaAuto, precioAuto, cantidadAuto, imagenAuto) {
-    this.marca = marcaAuto;
-    this.precio = precioAuto;
-    this.cantidad = cantidadAuto;
-    this.imagen = imagenAuto;
-    }
+    mostrarTotalCarrito()
+    accionBotones()
+    localStorage.setItem('carrito', JSON.stringify(carrito))
+}
 
-
-let baseDeDatos = [];
-
-let autoUno = new Auto ("Volkswagen", 200000, 10, "https://acs2.blob.core.windows.net/imgcatalogo/xl/VA_649edb2ba92f46c198283922d928ac0d.jpg");
-let autoDos = new Auto ("Peugeot", 220000, 15, "https://www.autobild.es/sites/autobild.es/public/dc/fotos/Peugeot-RCZR_2014_C01_0.jpg");
-let autoTres = new Auto ("Ford", 250000, 8, "https://www.megautos.com/wp-content/uploads/2017/11/Ford-Fiesta-2018-Brasil-dinamica.jpg");
-let autoCuatro = new Auto ("Fiat", 120000, 20, "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_c43e6bc0fe8048b092fad3412a5764f0.jpg");
-let autoCinco = new Auto ("Audi", 500000, 4, "https://images.clarin.com/2017/07/20/BJ_t9I0S-_1256x620.jpg");
-let autoSeis = new Auto ("Hyundai", 350000, 6, "https://i.blogs.es/7fc3ee/hyundai-i10-2016-110/1366_2000.jpg");
-    
-baseDeDatos.push(autoUno);
-baseDeDatos.push(autoDos);
-baseDeDatos.push(autoTres);
-baseDeDatos.push(autoCuatro);
-baseDeDatos.push(autoCinco);
-baseDeDatos.push(autoSeis);
-
-let mostrarAuto = ``;
-for (let i = 0; i < baseDeDatos.length; i++){
-    if (baseDeDatos[i].cantidad > 0) {
-        mostrarAuto += `
-        <div class="card">
-				<img src="${baseDeDatos[i].imagen}" alt="">
-                <div class="botones">
-                    <h3>${baseDeDatos[i].marca}</h3>
-                    <h3>$${baseDeDatos[i].precio}</h3>
-                    <button onclick='Carrito.agregarAlCarrito(${JSON.stringify(baseDeDatos[i])})'>Comprar Auto</button>
-				</div>
-		</div>
+const footer = document.querySelector('#footer-carrito')
+let mostrarTotalCarrito = () => {
+    footer.innerHTML = ''
+    if (Object.keys(carrito).length === 0) {
+        footer.innerHTML = `
+        <th scope="row" colspan="5">Carrito vacío</th>
         `
-    } else {
-        mostrarAuto += `
-        <h3>No hay stock</h3>
-        `
-    }
+        return
+    } 
+    const template = document.querySelector('#template-carrito-total').content
+    const fragment = document.createDocumentFragment()
+    let nCantidad = Object.values(carrito).reduce((acc, {cantidad}) => acc + cantidad, 0)
+    let nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * precio , 0)
+    template.querySelectorAll('td')[0].textContent = nCantidad
+    template.querySelector('span').textContent = nPrecio
+    const clone = template.cloneNode(true)
+    fragment.appendChild(clone)
+    footer.appendChild(fragment)
+    const boton = document.querySelector('#vaciar-carrito')
+    boton.addEventListener('click', () => {
+        carrito = {}
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'El Carrito fue Vaciado',
+            showConfirmButton: false,
+            timer: 1000
+          })
+        mostrarEnCarrito()
+    })
 }
 
-//document.getElementById("autos").innerHTML = mostrarAuto;
-$("#autos").html(mostrarAuto);
+let accionBotones = () => {
+    const botonSumar = document.querySelectorAll('#items .btn-success')
+    const botonRestar = document.querySelectorAll('#items .btn-danger')
+    botonSumar.forEach(btn => {
+        btn.addEventListener('click', () => {
+            let consolas = carrito[btn.dataset.id]
+            consolas.cantidad ++
+            carrito[btn.dataset.id] = {...consolas}
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Consola Agregada al Carrito',
+                showConfirmButton: false,
+                timer: 1000
+              })
+            mostrarEnCarrito()
+        })
+    })
+    botonRestar.forEach(btn => {
+        btn.addEventListener('click', () => {
+        let consolas = carrito[btn.dataset.id]
+        consolas.cantidad --
+        if (consolas.cantidad === 0) {
+            delete carrito[btn.dataset.id]
+        } else {
+            carrito[btn.dataset.id] = {...consolas}
+        }
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Consola Eliminada del Carrito',
+            showConfirmButton: false,
+            timer: 1000
+          })
+        mostrarEnCarrito()
+        })
+    })
+}
 
-/*function agregarAlCarrito (auto) {
-    carrito.push(auto);
-    console.log(carrito);
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-    let totalPrecio = 0;
-    for (let i = 0; i < carrito.length; i++) {
-        totalPrecio += carrito[i].precio;
-    }
-    document.getElementById("precioTotal").innerHTML = "$" + totalPrecio;
-    document.getElementById("contador").innerHTML = carrito.length;
-}*/
-
+// SCROLLEAR ARRIBA
+$('a').click( function() {
+    $('html, body').animate({
+        scrollTop: $("#top").offset().top  
+    }, 2000);
+} );
