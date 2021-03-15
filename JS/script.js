@@ -1,12 +1,12 @@
 let carrito = {}
-document.addEventListener('DOMContentLoaded', () => {
+$(document).ready(function() {
     fetchData()
     if (localStorage.getItem('carrito')) {
         carrito = JSON.parse(localStorage.getItem('carrito'))
         mostrarEnCarrito()
     }
 })
-
+// Utilizo un JSON como base de datos de los productos
 const fetchData = async () => {
     try {
         const res = await fetch('JS/api.json');
@@ -17,7 +17,7 @@ const fetchData = async () => {
         console.log(error)
     }
 }
-
+// Función para mostrar las consolas
 const contenedorConsolas = document.querySelector('#contenedor-consolas')
 let mostrarConsolas = (data) => {
     const template = document.querySelector('#template-consolas').content
@@ -33,7 +33,7 @@ let mostrarConsolas = (data) => {
     })
     contenedorConsolas.appendChild(fragment)
 }
-
+// Función para que al clickear en comprar en cada producto se agregue al carrito
 let detectarBotones = (data) => {
     const botones = document.querySelectorAll('.card button')
     botones.forEach(btn => {
@@ -55,7 +55,7 @@ let detectarBotones = (data) => {
         })
     })
 }
-
+// Función para que al agregar cada consola, se muestren en el carrito
 const items = document.querySelector('#items')
 let mostrarEnCarrito = () => {
     items.innerHTML = ''
@@ -77,7 +77,7 @@ let mostrarEnCarrito = () => {
     accionBotones()
     localStorage.setItem('carrito', JSON.stringify(carrito))
 }
-
+// Función para que se muestre el total del carrito (cantidades y precio)
 const footer = document.querySelector('#footer-carrito')
 let mostrarTotalCarrito = () => {
     footer.innerHTML = ''
@@ -96,8 +96,8 @@ let mostrarTotalCarrito = () => {
     const clone = template.cloneNode(true)
     fragment.appendChild(clone)
     footer.appendChild(fragment)
-    const boton = document.querySelector('#vaciar-carrito')
-    boton.addEventListener('click', () => {
+    const botonVaciar = document.querySelector('#vaciar-carrito')
+    botonVaciar.addEventListener('click', () => {
         carrito = {}
         Swal.fire({
             position: 'top-end',
@@ -108,8 +108,19 @@ let mostrarTotalCarrito = () => {
           })
         mostrarEnCarrito()
     })
+    const botonComprar = document.querySelector('#comprar-carrito')
+    botonComprar.addEventListener('click', () => {
+        carrito = {}
+        Swal.fire({
+            icon: 'success',
+            title: 'La compra fue realizada con exito',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        mostrarEnCarrito()
+    })
 }
-
+// Función para sumar y restar consolas desde el carrito con el + y -
 let accionBotones = () => {
     const botonSumar = document.querySelectorAll('#items .btn-success')
     const botonRestar = document.querySelectorAll('#items .btn-danger')
@@ -149,7 +160,7 @@ let accionBotones = () => {
     })
 }
 
-// SCROLLEAR ARRIBA
+// Función para que al clickear la flechita para arriba, sea en scroll
 $('a').click( function() {
     $('html, body').animate({
         scrollTop: $("#top").offset().top  
